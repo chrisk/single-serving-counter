@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Single Serving Counter!</title>
+
+  <style type="text/css">
+    body {
+      background-color: #fff;
+      font-family: "Helvetica Neue", Helvetica, Arial;
+      margin: 2em;
+      white-space: nowrap;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 25%;
+      font-weight: normal;
+      font-size: 2em;
+    }
+    h1 span {
+      color: #333;
+      padding-right: 0.1em;
+    }
+    h1 span+span {
+      color: #555;
+    }
+    h1 span+span+span {
+      color: #777;
+    }
+  </style>
+
+  <script type="text/javascript">
+    // Change this to the date you'd like to count from; months are zero-indexed
+    var down = new Date(2009, 1-1, 1, 0, 0);
+
+    var updateDuration = function() {
+      now = new Date();
+      document.getElementsByTagName("h1")[0].innerHTML = formatDuration(down, now);
+    };
+
+    var formatDuration = function(start, end) {
+      duration_in_ms = end.getTime() - start.getTime();
+      one_min_in_ms  = 60 * 1000;
+      one_hour_in_ms = 60 * one_min_in_ms;
+      one_day_in_ms  = 24 * one_hour_in_ms;
+
+      days = hours = mins = 0;
+      while (duration_in_ms > one_day_in_ms)  { duration_in_ms -= one_day_in_ms;  days++ }
+      while (duration_in_ms > one_hour_in_ms) { duration_in_ms -= one_hour_in_ms; hours++ }
+      while (duration_in_ms > one_min_in_ms)  { duration_in_ms -= one_min_in_ms;  mins++ }
+
+      duration  = "<span>" + days + " days</span> ";
+      duration += "<span>" + hours + " hour";  duration += (hours != 1) ? "s" : " "; duration += "</span> ";
+      duration += "<span>" + mins + " minute"; duration += (mins != 1)  ? "s" : " "; duration += "</span> ";
+      return duration;
+    };
+
+    window.addEventListener("load", function() {
+      updateDuration();
+      window.setInterval(updateDuration, 1000);
+    }, false);
+  </script>
+</head>
+
+<body>
+  <h1></h1>
+</body>
+</html>
