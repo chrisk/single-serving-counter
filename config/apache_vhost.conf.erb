@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+  ServerName <%= application %>
+  ServerAlias www.<%= application %>
+  DocumentRoot <%= current_path %>/public
+
+  # Redirect all requests to the root, no www
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} !^/$  [ornext]
+  RewriteCond %{HTTP_HOST}   ^www.<%= application %>$  [nocase]
+  RewriteRule ^(.*)$  http://<%= application %>  [redirect=permanent,last]
+</VirtualHost>
