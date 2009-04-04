@@ -1,4 +1,5 @@
-## Single Serving Counter!
+Single Serving Counter!
+=======================
 
 A quick [single-serving site](http://kottke.org/08/02/single-serving-sites)
 that uses Javascript to count up the days, hours, and minutes since a hard-coded
